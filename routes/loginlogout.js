@@ -5,6 +5,7 @@ const router = express.Router();
 router.post('/login', async (req, res) => {
     try{
         const foundUser = await User.findOne({email: req.body.email, password: req.body.password});
+        if( foundUser === null) res.status(400).json({message: 'user not found with given credentials'});
         console.log(foundUser);
         let user = req.session;
         user._id = foundUser._id;

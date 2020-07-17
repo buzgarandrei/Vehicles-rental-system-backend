@@ -75,7 +75,9 @@ router.patch('/addPrice', async (req, res) => {
 
 router.get('/getPrices/:id', async(req, res) => {
     try{
-        console.log(req.session);
+        if(req.headers['token'] !== req.session._id || req.session.role !== 'BASIC_USER') {
+            res.status(400).json({message: "your no fucking basic user"});
+        }
         const priceList = (await Vehicle.findById(req.params.id)).prices;
         let prices = [];
         for( let id of priceList) {

@@ -28,6 +28,14 @@ const AppointmentSchema = mongoose.Schema( {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    clientName: {
+        type: String,
+        required: true
+    },
+    vehicle: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Vehicle'
+    },
     shop: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Shop'
